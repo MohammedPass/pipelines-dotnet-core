@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+         stage('Build') {
             steps {
 
                 sh "dotnet build"
@@ -27,9 +27,19 @@ pipeline {
 
             }
 
+            
+        }
+
+        stage('Package') {
+            steps {
+
+                sh "dotnet publish"
+
+            }
+
             post {
-                always {
-                    junit '*/bin/Debug/net6.0/.dll'
+                success {
+                    archiveArtifacts artifacts: '*/bin/Debug/net6.0/.dll', followSymlinks: false
                 }
             }
         }
