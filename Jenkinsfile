@@ -12,7 +12,7 @@ pipeline {
             }
         }
 
-         stage('Build') {
+        stage('Build') {
             steps {
 
                 sh "dotnet build"
@@ -35,12 +35,6 @@ pipeline {
 
                 sh "dotnet publish"
 
-            }
-
-            post {
-                success {
-                    archiveArtifacts artifacts: '*/bin/Debug/net6.0/.dll', followSymlinks: false
-                }
             }
         }
     }
