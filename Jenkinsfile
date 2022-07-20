@@ -33,13 +33,12 @@ pipeline {
         }
         stage('Quality Scan'){
             steps {
-                sh '''
-                    dotnet sonarscanner begin /k:"Mohammed_Eid-.NET" /d:sonar.host.url="http://54.226.50.200"  /d:sonar.login=$SONAR_TOKEN
-                    dotnet build
-                    dotnet sonarscanner end /d:sonar.login=$SONAR_TOKEN
-                '''
+                sh "dotnet sonarscanner begin /k:"Mohammed_Eid-.NET" /d:sonar.host.url="http://$SONAR_IP"  /d:sonar.login="$SONAR_TOKEN""
+                sh "dotnet build"
+                sh "dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN""
             }
         }
+        
         stage('Publish') {
             steps {
                 sh "dotnet publish"
