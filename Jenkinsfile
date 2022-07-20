@@ -10,7 +10,7 @@ pipeline {
         AWS_EB_ENVIRONMENT = "Mohammedeidnetwebapp-env"
 
         SONAR_IP = "54.226.50.200"
-        SONAR_TOKEN ="sqp_ce59244d576bb2044aae813047b4098f0268ee9c"
+        SONAR_TOKEN ="sqp_f9427808e579878aec930fe023e2d4c868afdcfa"
 
     }
 
@@ -33,12 +33,13 @@ pipeline {
         }
         stage('Quality Scan'){
             steps {
-                sh "dotnet sonarscanner begin /k:"Mohammed_Eid-.NET" /d:sonar.host.url="http://$SONAR_IP"  /d:sonar.login="$SONAR_TOKEN""
+                sh "dotnet tool install --global dotnet-sonarscanner"
+                sh "dotnet sonarscanner begin /k:"Mohammed_Eid-dotnet" /d:sonar.host.url="http://$SONAR_IP"  /d:sonar.login="$SONAR_TOKEN""
                 sh "dotnet build"
                 sh "dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN""
             }
         }
-        
+
         stage('Publish') {
             steps {
                 sh "dotnet publish"
