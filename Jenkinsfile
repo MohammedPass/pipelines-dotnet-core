@@ -30,16 +30,7 @@ pipeline {
                 sh "dotnet test"
             }
         }
-        stage('Quality Scan'){
-            steps {
-                sh '''
-                                dotnet tool restore
-                dotnet sonarscanner begin /k:"Mohammed_Eid-dotnet" /d:sonar.host.url="http://54.226.50.200"  /d:sonar.login="sqp_f9427808e579878aec930fe023e2d4c868afdcfa"
-                dotnet build
-                dotnet sonarscanner end /d:sonar.login="sqp_f9427808e579878aec930fe023e2d4c868afdcfa"
-                '''
-            }
-        }
+        
 
         stage('Publish') {
             steps {
