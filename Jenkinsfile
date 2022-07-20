@@ -7,9 +7,17 @@ pipeline {
 
                 sh "dotnet restore"
 
-                
+            }
+        }
+
+                stage('Test') {
+            steps {
+
+                sh "dotnet test"
 
             }
+
+            
         }
 
         stage('Build') {
@@ -20,15 +28,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
 
-                sh "dotnet test"
-
-            }
-
-            
-        }
 
         stage('Package') {
             steps {
@@ -36,6 +36,11 @@ pipeline {
                 sh "dotnet publish"
 
             }
+                post{
+                    success {
+                        archiveArtifacts artifacts: '**/*.dll', followSymlinks: false
+                    }
+                }
         }
     }
 } 
