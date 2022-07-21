@@ -4,10 +4,17 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
         AWS_S3_BUCKET = "repo-backet"
+<<<<<<< HEAD
         ARTIFACT_NAME = "pipelines-dotnet-core.dll"
         AWS_EB_APP_NAME = "mohammedeid-dotNET-webapp"
         AWS_EB_APP_VERSION = "${BUILD_ID}"
         AWS_EB_ENVIRONMENT = "Mohammedeiddotnetwebapp-env"
+=======
+        ARTIFACT_NAME = "hello-world.dll"
+        AWS_EB_APP_NAME = "mohammedeid-.NET-webapp"
+        AWS_EB_APP_VERSION = "${BUILD_ID}"
+        AWS_EB_ENVIRONMENT = "Mohammedeidnetwebapp-env"
+>>>>>>> 9d307a5b38a3fa0f253d89541afcbdffd14cc24a
 
     
 
